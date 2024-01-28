@@ -68,6 +68,6 @@ public class CaesarCipher {
         else
             System.out.println("Invalid choice.");
         
-        System.out.println("Encrypted message: " + cc.cipher.toString());
+        System.out.println("Message: " + cc.cipher.toString());
     }
 }
