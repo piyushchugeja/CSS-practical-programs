@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class AutoKeyCipher {
     private String alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -40,11 +44,38 @@ public class AutoKeyCipher {
     }
 
     public static void main(String[] args) {
-        String message = "ATTACK AT DAWN";
-        String key = "L";
+        Scanner input = new Scanner(System.in);
+        System.out.println("Save the message in data.txt file.");
+        System.out.println("1: Encrypt\n2: Decrypt\n3: Exit");
+        System.out.print("Enter your choice: ");
+        int choice = input.nextInt();
+        if (choice == 3)
+            System.exit(0);
+        System.out.print("Enter the key for Autokey cipher: ");
+        input.nextLine();
+        String key = input.nextLine();
+
+        // get data from file
+        File file = new File("data.txt");
+        String message = "";
+        try {
+            Scanner fileReader = new Scanner(file);
+            while (fileReader.hasNextLine()) {
+                message += fileReader.nextLine();
+            }
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+        }
+
         AutoKeyCipher akc = new AutoKeyCipher();
-        String encryptedText = akc.encrypt(message, key);
-        System.out.println("Encrypted message: " + encryptedText);
-        System.out.println("Decrypted message: " + akc.decrypt(encryptedText, key));
+        if (choice == 1)
+            System.out.println(akc.encrypt(message, key));
+        else if (choice == 2)
+            System.out.println(akc.decrypt(message, key));
+        else
+            System.out.println("Invalid choice.");
+        
+        input.close();
     }
 }
