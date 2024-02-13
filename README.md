@@ -23,7 +23,9 @@ Here are some of the programs included in this repository:
 
 1. Caesar Cipher Encryption and Decryption
 2. Playfair Cipher Encryption and Decryption
-3. Transposition Cipher Encryption and Decryption
+3. Autokey Cipher Encryption and Decryption
+4. Transposition Cipher Encryption and Decryption
+5. RSA Encryption and Decryption
 
 Please refer to the individual program files for detailed explanations and usage instructions.
 
