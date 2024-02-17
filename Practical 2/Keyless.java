@@ -36,16 +36,12 @@ public class Keyless {
         input.nextLine();
         System.out.print("Enter your message: ");
         String message = input.nextLine();
-        System.err.print("Enter number of columns: ");
+        System.out.print("Enter number of columns: ");
         int cols = input.nextInt();
-
         Keyless k = new Keyless(cols, message);
-        if (choice == 1) 
-            k.encrypt();
-        else if (choice == 2)
-            k.decrypt();
-        else
-            System.out.println("Invalid choice!");;
+        if (choice == 1) k.encrypt();
+        else if (choice == 2) k.decrypt();
+        else System.out.println("Invalid choice!");;
         input.close();
     }
 }

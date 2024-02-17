@@ -16,8 +16,7 @@ public class Keyed {
     public String encrypt (String message) {
         int col = map.size();
         int row = (int) Math.ceil((double) message.length() / col);
-        while (message.length() < (row*col)) 
-            message += "_";
+        while (message.length() < (row*col)) message += "_";
         char[][] matrix = new char[row][col];
         for (int i = 0, index = 0; i < row; i++)
             for (int j = 0; j < col; j++)
@@ -47,7 +46,6 @@ public class Keyed {
             for (int i = 0; i < row; i++)
                 decipher[i][j] = cipher[i][column];
         }
-        
         StringBuilder decrypted = new StringBuilder();
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++)
