@@ -26,8 +26,7 @@ Here are some of the programs included in this repository:
 3. Autokey Cipher Encryption and Decryption
 4. Transposition Cipher Encryption and Decryption
 5. RSA Encryption and Decryption
-
-Please refer to the individual program files for detailed explanations and usage instructions.
+6. Diffie Hellman key exchange
 
 ## Usage
 
@@ -35,7 +34,7 @@ To use the programs in this repository, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Navigate to the specific program you want to use.
-3. Follow the instructions provided in the program file to execute and test the code.
+3. Run the code using Java.
 
 Make sure you have the necessary software and dependencies installed before running the programs.
 
