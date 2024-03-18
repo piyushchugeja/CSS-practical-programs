@@ -1,22 +1,17 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.io.*;
+import java.security.*;
 import java.util.Scanner;
-
 import javax.xml.bind.DatatypeConverter;
 
 public class Encryptions {
     private File dataFile;
     private String message;
-    private String key;
-    private String encryptionAlgorithm, hashingAlgorithm;
+    private String key, encryptionAlgorithm, hashingAlgorithm;
 
-    public Encryptions(String key, String encryptionAlgorithm, String hashingAlgorithm) {
+    public Encryptions(String key, String enc, String has) {
         this.key = key;
-        this.encryptionAlgorithm = encryptionAlgorithm;
-        this.hashingAlgorithm = hashingAlgorithm;
+        this.encryptionAlgorithm = enc;
+        this.hashingAlgorithm = has;
     }
 
     public void setDataFile(File dataFile) {
@@ -26,7 +21,7 @@ public class Encryptions {
     public void hashMessage() {
         try {
             MessageDigest hasher = MessageDigest.getInstance(hashingAlgorithm);
-            hasher.update(message.getBytes(StandardCharsets.UTF_8));
+            hasher.update(message.getBytes());
             byte[] digest = hasher.digest();
             String hash = DatatypeConverter.printHexBinary(digest).toUpperCase();
             System.out.println("\n" + hashingAlgorithm + " hash: " + hash + "\n");

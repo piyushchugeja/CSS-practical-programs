@@ -3,7 +3,6 @@ import javax.crypto.spec.*;
 import java.security.spec.*;
 import java.util.Base64;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 public class AES implements EncryptionAlgorithm {
     private String key;
@@ -16,7 +15,7 @@ public class AES implements EncryptionAlgorithm {
 
     private SecretKey getKeyFromKey() throws Exception {
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-        KeySpec spec = new PBEKeySpec(key.toCharArray(), salt.getBytes(StandardCharsets.UTF_8), 1024, 256);
+        KeySpec spec = new PBEKeySpec(key.toCharArray(), salt.getBytes(), 1024, 256);
         SecretKey secret = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
         return secret;
     }
@@ -29,7 +28,7 @@ public class AES implements EncryptionAlgorithm {
         SecretKey secret = getKeyFromKey();
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(mode, secret, getIV());
-        byte[] bytes = message.getBytes(StandardCharsets.UTF_8);
+        byte[] bytes = message.getBytes();
         byte[] processed;
         if (mode == Cipher.ENCRYPT_MODE) {
             processed = cipher.doFinal(bytes);
