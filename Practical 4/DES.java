@@ -2,8 +2,7 @@ import javax.crypto.*;
 import javax.crypto.spec.*;
 import java.security.spec.*;
 import java.util.Base64;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class DES implements EncryptionAlgorithm {
@@ -18,7 +17,7 @@ public class DES implements EncryptionAlgorithm {
 
     private SecretKey getKeyFromKey() throws Exception {
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-        KeySpec spec = new PBEKeySpec(key.toCharArray(), salt.getBytes(StandardCharsets.UTF_8), 1024, 128);
+        KeySpec spec = new PBEKeySpec(key.toCharArray(), salt.getBytes(StandardCharsets.UTF_8), 1024, 64);
         SecretKey secret = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "DES");
         return secret;
     }
